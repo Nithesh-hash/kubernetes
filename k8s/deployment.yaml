@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: your-app-name        # Must match your K8S_DEPLOYMENT variable in Jenkins
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: your-app-name
+  template:
+    metadata:
+      labels:
+      app: your-app-name
+    spec:
+      containers:
+      - name: your-app-name       # Must match the container name being updated in Jenkins
+        image: your-dockerhub-username/your-app-name:latest
+        ports:
+        - containerPort: 3000     # Match your app's port
