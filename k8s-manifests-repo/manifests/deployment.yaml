@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-generic-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-generic-app
+  template:
+    metadata:
+      labels:
+        app: my-generic-app
+    spec:
+      containers:
+      - name: app-container
+        image: placeholder:latest  # Will be overwritten by Jenkins
+        ports:
+        - containerPort: 80
